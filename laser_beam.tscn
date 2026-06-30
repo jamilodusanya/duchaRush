@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://c85seotra3n8g"]
+
+[ext_resource type="Script" uid="uid://di1tofp6ihpp1" path="res://laser_beam.gd" id="1_t1d0h"]
+[ext_resource type="Texture2D" uid="uid://cwuawfwxti7a5" path="res://vecteezy_fishbone-in-pixel-art-style_20577620.png" id="2_ni8j5"]
+[ext_resource type="Script" uid="uid://g8ersajobcjq" path="res://area_2d.gd" id="3_ni8j5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ni8j5"]
+size = Vector2(380, 452)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sr12g"]
+size = Vector2(245, 419)
+
+[node name="laser_beam" type="CharacterBody2D"]
+scale = Vector2(0.25, 0.25)
+collision_mask = 0
+script = ExtResource("1_t1d0h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(55.25, 21)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ni8j5")
+
+[node name="laser_area" type="Area2D" parent="."]
+position = Vector2(16, 0)
+script = ExtResource("3_ni8j5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="laser_area"]
+position = Vector2(62, 14)
+shape = SubResource("RectangleShape2D_ni8j5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(104, 24)
+shape = SubResource("RectangleShape2D_sr12g")
+
+[connection signal="area_entered" from="laser_area" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="laser_area" to="." method="_on_area_2d_body_entered"]

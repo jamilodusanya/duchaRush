@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dssafi07pkit7"]
+
+[ext_resource type="Script" uid="uid://bdwr5bupgr0e1" path="res://enemy_beam.gd" id="1_npfn1"]
+[ext_resource type="Texture2D" uid="uid://cw36wu272mlj0" path="res://04.png" id="2_onfgq"]
+[ext_resource type="Script" uid="uid://yhnw8e24ban0" path="res://enemybeam.gd" id="3_onfgq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xm6p1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npfn1"]
+size = Vector2(52, 28)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_mask = 128
+script = ExtResource("1_npfn1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_onfgq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xm6p1")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+script = ExtResource("3_onfgq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_npfn1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

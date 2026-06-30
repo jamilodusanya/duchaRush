@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3n3edggnsro3"]
+
+[ext_resource type="Script" uid="uid://bgwi0pege55qk" path="res://health_timer.gd" id="1_sy5k4"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_sy5k4")
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+anchors_preset = -1
+anchor_left = 0.053000003
+anchor_right = 0.053000003
+offset_left = -1234.056
+offset_top = -995.0
+offset_right = 1758.944
+offset_bottom = 1040.0
+
+[node name="Timer" type="Timer" parent="Label"]
